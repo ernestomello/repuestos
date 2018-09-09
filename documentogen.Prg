@@ -8,7 +8,7 @@ local cTipoDoc := tipoDocumento(nDocumento)
 //
 do case
 
-	case cTipoDoc == 'F' .or. cTipoDoc == 'D' .or. cTipoDoc == 'C' .or. cTipoDoc == 'P'
+	case cTipoDoc == 'F' .or. cTipoDoc == 'D' .or. cTipoDoc == 'C' .or. cTipoDoc == 'P' .or. cTipoDoc == 'Q'
 		aLargos := {120,200,45,80,30,40,80 }
 		aTitulos := {'Codigo','Articulo','Cant.','Precio Unit.','Iva','Dto.','PrecioFinal'}
 		aControls := {{'TEXTBOX','CHARACTER'},{'TEXTBOX','CHARACTER'},{'TEXTBOX','NUMERIC','999.99'},{'TEXTBOX','NUMERIC','999,999.99'},{'TEXTBOX','NUMERIC','99'},{'TEXTBOX','NUMERIC','999'},{'TEXTBOX','NUMERIC','999,999,999.99'}}
