@@ -51,7 +51,10 @@ do case
 		documentogen.title := "Contado"
 		cargarFacturaCreditoCliente(nDocumento)
 	case cTipoDoc == 'P'
-		documentogen.title := "Presupuesto"
+		documentogen.title := "Presupuesto Crédito"
+		cargarFacturaCreditoCliente(nDocumento)
+	case cTipoDoc == 'Q'
+		documentogen.title := "Presupuesto Contado"
 		cargarFacturaCreditoCliente(nDocumento)
 
 end case 
