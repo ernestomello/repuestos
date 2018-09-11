@@ -55,7 +55,7 @@ local nPrecioSinDescuento := 0
     factCliente.text_9.fontcolor := {0,0,0}
     factCliente.text_10.value:= ctod("  /  /    ")
     factCliente.text_16.value := 0
-    factCliente.text_11.value := iif(alltrim(factCliente.text_14.value) == 'C', 50, 0)
+    factCliente.text_11.value := iif(alltrim(factCliente.text_14.value) == 'C' .or. alltrim(factCliente.text_14.value) == 'Q', 50, 0)
     factCliente.text_12.value := 0
     factCliente.text_20.value := ""
     sumoLineas()

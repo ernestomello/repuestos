@@ -27,8 +27,8 @@ local cFechaAnular:= 	PARAMETROini("FECHANULAR","C")
           conveniopagocobrador.frame_1.caption := 'Clientes'
           cQuery := "select id_cliente, nombre,direccion_particular "
           cQuery += " from cliente "
-          cQuery += " order by "+str(orden)+" LIMIT 600"
-				case vpc == 'cf'
+          cQuery += " order by "+str(orden)+" LIMIT 200"
+		case vpc == 'cf'
           conveniopagocobrador.frame_1.caption := 'Clientes'
           cQuery := "select id_cliente, nombre,direccion_particular "
           cQuery += " from cliente "
@@ -119,10 +119,16 @@ If len(conveniopagocobrador.text_1.value) > 2
 conveniopagocobrador.grid_1.deleteAllItems
 cNombre := iif(conveniopagocobrador.text_1.value = nil, '"%"',' "%'+AllTrim(conveniopagocobrador.text_1.value)+'%"' )
  do case 
-        case vpc == 'c'
+        case vpc == 'cc'
           conveniopagocobrador.frame_1.caption := 'Clientes'
-          cQuery := "select id_cliente, nombre,direccion_particular from cliente "
-          cQuery += " where nombre LIKE "+cNombre+"  order by "+str(orden)+" limit 100"
+          cQuery := " select id_cliente, nombre,direccion_particular from cliente "
+          cQuery += " where nombre LIKE "+cNombre+"  order by "+str(orden)+" limit 100 "
+		case vpc == 'cf'
+          conveniopagocobrador.frame_1.caption := 'Clientes'
+          cQuery := "select id_cliente, nombre,direccion_particular "
+          cQuery += " from cliente "
+          cQuery += " where cta_cte = 1 and nombre LIKE "+cNombre+"  order by "+str(orden)+" limit 100 "
+          
         case vpc == 'a'
 			conveniopagocobrador.frame_1.caption := 'Repuestos'
 			cQuery := "select codigo_barra, descripcion,concat('$',precio_venta) from articulo "          
