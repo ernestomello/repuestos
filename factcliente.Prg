@@ -14,8 +14,9 @@ if !IsWindowActive(factCliente)
 	factCliente.label_14.value := descripcionDocumento(cTipoDocumento)
 	factCliente.text_15.value := cajaId()
 	factCliente.text_11.value := iif(alltrim(factCliente.text_14.value) == 'C' .or. alltrim(factCliente.text_14.value) == 'Q' , 50, 0)
-	iif(alltrim(factCliente.text_14.value) != 'F',factCliente.text_17.visible := .f.,)
-	iif(alltrim(factCliente.text_14.value) != 'F',factCliente.frame_2.visible := .f.,)
+	iif(alltrim(factCliente.text_14.value) != 'F' .and. alltrim(factCliente.text_14.value) != 'P' ,factCliente.text_17.visible := .f.,)
+	iif(alltrim(factCliente.text_14.value) != 'F' .and. alltrim(factCliente.text_14.value) != 'P' ,factCliente.frame_2.visible := .f.,)
+	
 	factCliente.Center
 	factCliente.Activate	
 else
@@ -102,7 +103,7 @@ factCliente.text_9.value:= 0
 factCliente.text_9.fontcolor := {0,128,0}
 
 factCliente.text_10.value:= ctod("  /  /    ")
-factCliente.text_11.value := iif(alltrim(factCliente.text_14.value) == 'C', 50, 0)
+factCliente.text_11.value := iif(alltrim(factCliente.text_14.value) == 'C' .or. alltrim(factCliente.text_14.value) == 'Q' , 50, 0)
 factCliente.text_12.value := 0
 factCliente.text_13.value:=''
 factCliente.text_16.value := 0
@@ -266,9 +267,9 @@ if factCliente.text_18.value  = 0
 	return .f.
 endIf
 
-if len(factCliente.text_13.value)  < 4 .and. alltrim(factCliente.text_14.value) = 'F'
+if len(factCliente.text_13.value)  < 4 .and. alltrim(factCliente.text_14.value) == 'F'
 	msgBox("Ingrese un Comentario")
-	factCliente.text_18.SetFocus
+	factCliente.text_13.SetFocus
 	return .f.
 endIf
 
@@ -439,7 +440,7 @@ local cQuery, oQuery
 cQuery := " Insert into factura_cliente_cab values "
 cQuery += " ("+str(nNumero)+","+str(nCaja)+", '"+dtos(dFechaFactura)+"', " 
 cQuery += " "+str(nCliente)+",'"+cTipoDocumento+"',"+str(nVendedor)+", "+str(nImporte)+" , "
-iif(cTipoDocumento != 'C', cQuery += "  "+str(nImporte)+",  ", cQuery += " 0 ,")
+iif (cTipoDocumento != 'C', cQuery += "  "+str(nImporte)+",  ", cQuery += " 0 ,")
 cQuery += " '"+cDescripcion+"' , current_timestamp , 'N' ,null , null)"
 
 oQuery:= oServer:Query(  cQuery )
